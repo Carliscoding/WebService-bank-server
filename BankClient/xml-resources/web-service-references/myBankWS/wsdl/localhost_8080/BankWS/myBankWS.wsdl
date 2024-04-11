@@ -4,12 +4,6 @@
 <xsd:import namespace="http://webservice/" schemaLocation="http://localhost:8080/BankWS/myBankWS?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="transfer">
-<part name="parameters" element="tns:transfer"/>
-</message>
-<message name="transferResponse">
-<part name="parameters" element="tns:transferResponse"/>
-</message>
 <message name="login">
 <part name="parameters" element="tns:login"/>
 </message>
@@ -22,11 +16,13 @@
 <message name="drawResponse">
 <part name="parameters" element="tns:drawResponse"/>
 </message>
+<message name="transfer">
+<part name="parameters" element="tns:transfer"/>
+</message>
+<message name="transferResponse">
+<part name="parameters" element="tns:transferResponse"/>
+</message>
 <portType name="myBankWS">
-<operation name="transfer">
-<input wsam:Action="http://webservice/myBankWS/transferRequest" message="tns:transfer"/>
-<output wsam:Action="http://webservice/myBankWS/transferResponse" message="tns:transferResponse"/>
-</operation>
 <operation name="login">
 <input wsam:Action="http://webservice/myBankWS/loginRequest" message="tns:login"/>
 <output wsam:Action="http://webservice/myBankWS/loginResponse" message="tns:loginResponse"/>
@@ -35,18 +31,13 @@
 <input wsam:Action="http://webservice/myBankWS/drawRequest" message="tns:draw"/>
 <output wsam:Action="http://webservice/myBankWS/drawResponse" message="tns:drawResponse"/>
 </operation>
+<operation name="transfer">
+<input wsam:Action="http://webservice/myBankWS/transferRequest" message="tns:transfer"/>
+<output wsam:Action="http://webservice/myBankWS/transferResponse" message="tns:transferResponse"/>
+</operation>
 </portType>
 <binding name="myBankWSPortBinding" type="tns:myBankWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="transfer">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="login">
 <soap:operation soapAction=""/>
 <input>
@@ -57,6 +48,15 @@
 </output>
 </operation>
 <operation name="draw">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="transfer">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

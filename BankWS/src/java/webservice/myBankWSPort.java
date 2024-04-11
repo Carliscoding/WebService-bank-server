@@ -15,8 +15,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
-import webservice_client.MyBankWS;
-import webservice_client.User;
 
 /**
  * REST Web Service
@@ -25,7 +23,7 @@ import webservice_client.User;
  */
 @Path("mybankwsport")
 public class myBankWSPort {
-    private MyBankWS port;
+    private webservice_client.MyBankWS port;
 
     @Context
     private UriInfo context;
@@ -64,6 +62,29 @@ public class myBankWSPort {
     }
 
     /**
+     * Invokes the SOAP method login
+     * @param arg0 resource URI parameter
+     * @param arg1 resource URI parameter
+     * @return an instance of javax.xml.bind.JAXBElement<webservice_client.User>
+     */
+    @GET
+    @Produces("application/xml")
+    @Consumes("text/plain")
+    @Path("login/")
+    public JAXBElement<webservice_client.User> getLogin(@QueryParam("arg0") String arg0, @QueryParam("arg1") String arg1) {
+        try {
+            // Call Web Service Operation
+            if (port != null) {
+                webservice_client.User result = port.login(arg0, arg1);
+                return new JAXBElement<webservice_client.User>(new QName("http//webservice_client/", "user"), webservice_client.User.class, result);
+            }
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+        }
+        return null;
+    }
+
+    /**
      * Invokes the SOAP method draw
      * @param arg0 resource URI parameter
      * @param arg1 resource URI parameter
@@ -88,32 +109,9 @@ public class myBankWSPort {
     }
 
     /**
-     * Invokes the SOAP method login
-     * @param arg0 resource URI parameter
-     * @param arg1 resource URI parameter
-     * @return an instance of javax.xml.bind.JAXBElement<webservice_client.User>
-     */
-    @GET
-    @Produces("application/xml")
-    @Consumes("text/plain")
-    @Path("login/")
-    public JAXBElement<User> getLogin(@QueryParam("arg0") String arg0, @QueryParam("arg1") String arg1) {
-        try {
-            // Call Web Service Operation
-            if (port != null) {
-                webservice_client.User result = port.login(arg0, arg1);
-                return new JAXBElement<webservice_client.User>(new QName("http//webservice_client/", "user"), webservice_client.User.class, result);
-            }
-        } catch (Exception ex) {
-            // TODO handle custom exceptions here
-        }
-        return null;
-    }
-
-    /**
      *
      */
-    private MyBankWS getPort() {
+    private webservice_client.MyBankWS getPort() {
         try {
             // Call Web Service Operation
             webservice_client.MyBankWS_Service service = new webservice_client.MyBankWS_Service();
