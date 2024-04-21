@@ -30,6 +30,8 @@ public class loginForm extends javax.swing.JFrame {
         txt_username = new javax.swing.JTextField();
         lb_password = new javax.swing.JLabel();
         txt_password = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        login_btn_navigateToregister = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login Form");
@@ -52,6 +54,15 @@ public class loginForm extends javax.swing.JFrame {
 
         txt_password.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
+        jLabel1.setText("Don't have an account?!");
+
+        login_btn_navigateToregister.setText("Register");
+        login_btn_navigateToregister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                login_btn_navigateToregisterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -59,7 +70,11 @@ public class loginForm extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(413, 413, 413))
+                .addGap(172, 172, 172)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(login_btn_navigateToregister)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -86,8 +101,15 @@ public class loginForm extends javax.swing.JFrame {
                     .addComponent(lb_password, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_password))
                 .addGap(18, 18, 18)
-                .addComponent(btn_confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(login_btn_navigateToregister))
+                        .addContainerGap())))
         );
 
         pack();
@@ -118,6 +140,17 @@ public class loginForm extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btn_confirmActionPerformed
+
+    private void login_btn_navigateToregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btn_navigateToregisterActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                RegisterForm form = new RegisterForm();
+                form.setVisible(true);
+                setVisible(false);
+            }
+
+        });
+    }//GEN-LAST:event_login_btn_navigateToregisterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,8 +189,10 @@ public class loginForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_confirm;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lb_password;
     private javax.swing.JLabel lb_username;
+    private javax.swing.JButton login_btn_navigateToregister;
     private javax.swing.JTextField txt_password;
     private javax.swing.JTextField txt_username;
     // End of variables declaration//GEN-END:variables

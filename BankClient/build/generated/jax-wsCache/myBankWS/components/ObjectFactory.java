@@ -26,9 +26,11 @@ public class ObjectFactory {
 
     private final static QName _LoginResponse_QNAME = new QName("http://webservice/", "loginResponse");
     private final static QName _Transfer_QNAME = new QName("http://webservice/", "transfer");
+    private final static QName _RegisterResponse_QNAME = new QName("http://webservice/", "registerResponse");
     private final static QName _DrawResponse_QNAME = new QName("http://webservice/", "drawResponse");
     private final static QName _Draw_QNAME = new QName("http://webservice/", "draw");
     private final static QName _TransferResponse_QNAME = new QName("http://webservice/", "transferResponse");
+    private final static QName _Register_QNAME = new QName("http://webservice/", "register");
     private final static QName _Login_QNAME = new QName("http://webservice/", "login");
 
     /**
@@ -63,6 +65,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link RegisterResponse }
+     * 
+     */
+    public RegisterResponse createRegisterResponse() {
+        return new RegisterResponse();
+    }
+
+    /**
      * Create an instance of {@link TransferResponse }
      * 
      */
@@ -84,6 +94,14 @@ public class ObjectFactory {
      */
     public Login createLogin() {
         return new Login();
+    }
+
+    /**
+     * Create an instance of {@link Register }
+     * 
+     */
+    public Register createRegister() {
+        return new Register();
     }
 
     /**
@@ -129,6 +147,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RegisterResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://webservice/", name = "registerResponse")
+    public JAXBElement<RegisterResponse> createRegisterResponse(RegisterResponse value) {
+        return new JAXBElement<RegisterResponse>(_RegisterResponse_QNAME, RegisterResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DrawResponse }{@code >}}
      * 
      */
@@ -153,6 +180,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://webservice/", name = "transferResponse")
     public JAXBElement<TransferResponse> createTransferResponse(TransferResponse value) {
         return new JAXBElement<TransferResponse>(_TransferResponse_QNAME, TransferResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Register }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://webservice/", name = "register")
+    public JAXBElement<Register> createRegister(Register value) {
+        return new JAXBElement<Register>(_Register_QNAME, Register.class, null, value);
     }
 
     /**

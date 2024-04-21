@@ -15,6 +15,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
+import webservice_client.MyBankWS;
+import webservice_client.User;
 
 /**
  * REST Web Service
@@ -23,7 +25,7 @@ import javax.xml.namespace.QName;
  */
 @Path("mybankwsport")
 public class myBankWSPort {
-    private webservice_client.MyBankWS port;
+    private MyBankWS port;
 
     @Context
     private UriInfo context;
@@ -71,7 +73,7 @@ public class myBankWSPort {
     @Produces("application/xml")
     @Consumes("text/plain")
     @Path("login/")
-    public JAXBElement<webservice_client.User> getLogin(@QueryParam("arg0") String arg0, @QueryParam("arg1") String arg1) {
+    public JAXBElement<User> getLogin(@QueryParam("arg0") String arg0, @QueryParam("arg1") String arg1) {
         try {
             // Call Web Service Operation
             if (port != null) {
@@ -111,7 +113,7 @@ public class myBankWSPort {
     /**
      *
      */
-    private webservice_client.MyBankWS getPort() {
+    private MyBankWS getPort() {
         try {
             // Call Web Service Operation
             webservice_client.MyBankWS_Service service = new webservice_client.MyBankWS_Service();

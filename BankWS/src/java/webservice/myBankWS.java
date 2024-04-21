@@ -132,5 +132,34 @@ public class myBankWS {
 
     return "Draw money success";
     }
+     @WebMethod
+    public String register(String username, String password, String fullName) {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("BankWSPU");
+        EntityManager em = factory.createEntityManager();
+
+        // Check if username already exists
+        Query query = em.createNamedQuery("Tbluser.findByUserName", Tbluser.class);
+        query.setParameter("userName", username);
+        List<Tbluser> existingUsers = query.getResultList();
+        if (!existingUsers.isEmpty()) {
+            return "Username already exists.";
+        }
+
+        // Create a new user entity
+        Tbluser newUser = new Tbluser();
+        newUser.setUserName(username);
+        newUser.setPassword(password);
+        newUser.setFullName(fullName);
+        newUser.setTotalMoney((float)0);
+
+        // Start transaction
+        em.getTransaction().begin();
+        // Persist the new user
+        em.persist(newUser);
+        // Commit transaction
+        em.getTransaction().commit();
+
+        return "Registration successful.";
+    }
     
 }
