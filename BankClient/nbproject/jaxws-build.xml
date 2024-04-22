@@ -33,22 +33,5 @@
         <delete dir="${build.generated.dir}/jax-wsCache/myBankWS"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/components"/>
     </target>
-    <target name="wsimport-client-myBankWS_1" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/myBankWS_1"/>
-        <property name="wsdl-myBankWS_1" location="xml-resources/web-service-references/myBankWS_1/wsdl/localhost_8080/BankWS/myBankWS.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/myBankWS_1" destdir="${build.generated.dir}/jax-wsCache/myBankWS_1" wsdl="${wsdl-myBankWS_1}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/BankWS/myBankWS?wsdl" xnocompile="true" xendorsed="true" package="components">
-            <depends file="${wsdl-myBankWS_1}"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/myBankWS_1"/>
-        </wsimport>
-        <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/myBankWS_1">
-                <include name="**/*.java"/>
-            </fileset>
-        </copy>
-    </target>
-    <target name="wsimport-client-clean-myBankWS_1" depends="-init-project">
-        <delete dir="${build.generated.dir}/jax-wsCache/myBankWS_1"/>
-        <delete dir="${build.generated.sources.dir}/jax-ws/components"/>
-    </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-myBankWS, wsimport-client-myBankWS_1"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-myBankWS"/>
 </project>

@@ -8,6 +8,10 @@
 
 <xs:element name="loginResponse" type="tns:loginResponse"/>
 
+<xs:element name="register" type="tns:register"/>
+
+<xs:element name="registerResponse" type="tns:registerResponse"/>
+
 <xs:element name="transfer" type="tns:transfer"/>
 
 <xs:element name="transferResponse" type="tns:transferResponse"/>
@@ -66,6 +70,20 @@
 <xs:element name="to_username" type="xs:string" minOccurs="0"/>
 <xs:element name="totalTransfer" type="xs:float"/>
 <xs:element name="transferDate" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="register">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+<xs:element name="arg2" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="registerResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

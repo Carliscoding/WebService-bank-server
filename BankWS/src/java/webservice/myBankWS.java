@@ -7,6 +7,11 @@ package webservice;
 import entities.Tbldrawmoneyhistory;
 import entities.Tbltransferhistory;
 import entities.Tbluser;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import javax.jws.WebMethod;
@@ -85,12 +90,17 @@ public class myBankWS {
         if(tbluserList == null || tbluserList.isEmpty()){
             return "Tai khoan nhan khong ton tai.";
         }
+        //set up date time 
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        
         Tbltransferhistory tbltransferhistory = new Tbltransferhistory();
         tbltransferhistory.setFromUserName(fromtbl_user);
         tbltransferhistory.setNote(note);
         tbltransferhistory.setToUserName(tbluserList.get(0));
         tbltransferhistory.setTotalTransfer(money);
-        tbltransferhistory.setTransferDate(new Date());
+        
+        tbltransferhistory.setTransferDate(date);
         
         entityMan.getTransaction().begin();
         fromtbl_user.setTotalMoney(fromtbl_user.getTotalMoney()-money);
@@ -117,9 +127,13 @@ public class myBankWS {
             if(user.getTotalMoney() < money) {
                 return "So tien vuot qua trong tai khoan";
             }
-
+            //setup date time
+            LocalDateTime localDateTime = LocalDateTime.now();
+            Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        
+        
             Tbldrawmoneyhistory tbldrawmoneyhistory = new Tbldrawmoneyhistory();
-            tbldrawmoneyhistory.setDrawDate(new Date());
+            tbldrawmoneyhistory.setDrawDate(date);
             tbldrawmoneyhistory.setTotalDraw(money);
             tbldrawmoneyhistory.setUserName(user);
 
@@ -161,5 +175,31 @@ public class myBankWS {
 
         return "Registration successful.";
     }
+    
+//    public void updateTransferTable(String fromUserName, String toUserName, float money, Date transferDate) {
+//        EntityManagerFactory factory = Persistence.createEntityManagerFactory("BankWSPU");
+//        EntityManager entityManager = factory.createEntityManager();
+// 
+//        // Tìm kiếm user gửi và user nhận trong cơ sở dữ liệu
+//        Query query = entityManager.createNamedQuery("Tbluser.findByUserName", Tbluser.class);
+//        query.setParameter("userName", fromUserName);
+//        Tbluser fromUser = (Tbluser) query.getSingleResult();
+// 
+//        query = entityManager.createNamedQuery("Tbluser.findByUserName", Tbluser.class);
+//        query.setParameter("userName", toUserName);
+//        Tbluser toUser = (Tbluser) query.getSingleResult();
+// 
+//        // Tạo một bản ghi mới trong bảng transfer history
+//        Tbltransferhistory transferHistory = new Tbltransferhistory();
+//        transferHistory.setFromUserName(fromUser);
+//        transferHistory.setToUserName(toUser);
+//        transferHistory.setTotalTransfer(money);
+//        transferHistory.setTransferDate(transferDate);
+// 
+//        // Bắt đầu giao dịch và cập nhật cơ sở dữ liệu
+//        entityManager.getTransaction().begin();
+//        entityManager.persist(transferHistory);
+//        entityManager.getTransaction().commit();
+//    }
     
 }

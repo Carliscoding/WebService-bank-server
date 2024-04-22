@@ -26,6 +26,51 @@ public interface MyBankWS {
 
     /**
      * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "register", targetNamespace = "http://webservice/", className = "components.Register")
+    @ResponseWrapper(localName = "registerResponse", targetNamespace = "http://webservice/", className = "components.RegisterResponse")
+    @Action(input = "http://webservice/myBankWS/registerRequest", output = "http://webservice/myBankWS/registerResponse")
+    public String register(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2);
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "transfer", targetNamespace = "http://webservice/", className = "components.Transfer")
+    @ResponseWrapper(localName = "transferResponse", targetNamespace = "http://webservice/", className = "components.TransferResponse")
+    @Action(input = "http://webservice/myBankWS/transferRequest", output = "http://webservice/myBankWS/transferResponse")
+    public String transfer(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        float arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        String arg3);
+
+    /**
+     * 
      * @param arg1
      * @param arg0
      * @return
@@ -59,29 +104,5 @@ public interface MyBankWS {
         String arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         float arg1);
-
-    /**
-     * 
-     * @param arg3
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "transfer", targetNamespace = "http://webservice/", className = "components.Transfer")
-    @ResponseWrapper(localName = "transferResponse", targetNamespace = "http://webservice/", className = "components.TransferResponse")
-    @Action(input = "http://webservice/myBankWS/transferRequest", output = "http://webservice/myBankWS/transferResponse")
-    public String transfer(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        float arg2,
-        @WebParam(name = "arg3", targetNamespace = "")
-        String arg3);
 
 }
